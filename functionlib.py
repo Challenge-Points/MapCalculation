@@ -7,28 +7,25 @@ def modToRaw(score, mods):
     # NF, NO, NB, SS, IF, BE, DA, FS, GN #
     ######################################
     amount = len(mods)
-    a = 0
     mod = 1
-    while a < amount:
-        if mods[a] == 'NF':
-            mod = mod - 0.5
-        elif mods[a] == 'NO':
-            mod = mod - 0.95
-        elif mods[a] == 'NB':
-            mod = mod - 0.90
-        elif mods[a] == 'SS':
-            mod = mod - 0.70
-        elif mods[a] == 'IF':
-            mod = mod + 0.16
-        elif mods[a] == 'BE':
-            mod = mod + 0.10
-        elif mods[a] == 'DA':
-            mod = mod + 0.07
-        elif mods[a] == 'FS':
-            mod = mod + 0.08
-        elif mods[a] == 'GN':
-            mod = mod + 0.11
-        a = a + 1
+    if 'NF' in mods:
+        mod = mod - 0.5
+    if 'NO' in mods:
+        mod = mod - 0.95
+    if 'NB' in mods:
+        mod = mod - 0.90
+    if 'SS' in mods:
+        mod = mod - 0.70
+    if 'IF' in mods:
+        mod = mod + 0.16
+    if 'BE' in mods:
+        mod = mod + 0.10
+    if 'DA' in mods:
+        mod = mod + 0.07
+    if 'FS' in mods:
+        mod = mod + 0.08
+    if 'GN' in mods:
+        mod = mod + 0.11
     score = score * mod
     round(score, 0)
     return score
