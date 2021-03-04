@@ -4,12 +4,10 @@ from math import acos, pi
 def modToRaw(score, mods):
     ######################################
     # List of mods                       #
-    # NF, NO, NB, SS, IF, BE, DA, FS, GN #
+    # NF, NA, NO, NB, SS, IF, BE, DA, FS, GN #
     ######################################
     amount = len(mods)
     mod = 1
-    if 'NF' in mods:
-        mod = mod - 0.5
     if 'NO' in mods:
         mod = mod - 0.95
     if 'NB' in mods:
@@ -26,6 +24,10 @@ def modToRaw(score, mods):
         mod = mod + 0.08
     if 'GN' in mods:
         mod = mod + 0.11
+    if 'NA' in mods:
+        mod = 0
+    if 'NF' in mods:
+        mod = 0
     score = score * mod
     round(score, 0)
     return score
