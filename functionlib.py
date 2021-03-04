@@ -2,11 +2,10 @@ import json, math, sympy
 from math import acos, pi
 
 def modToRaw(score, mods):
-    ######################################
-    # List of mods                       #
+    ##########################################
+    # List of mods                           #
     # NF, NA, NO, NB, SS, IF, BE, DA, FS, GN #
-    ######################################
-    amount = len(mods)
+    ##########################################
     mod = 1
     if 'NO' in mods:
         mod = mod - 0.95
