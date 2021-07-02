@@ -2,7 +2,7 @@
 
 Challenge Ranking System for Beat Saber
 
-# How do we calculate the wight of a map?
+# How do we calculate the weight of a map?
 
 these are the criteria we set for a map
 
@@ -11,14 +11,14 @@ these are the criteria we set for a map
 -   Avg swing distance
 -   Avg swing speed
 
-i'll explain all of them in depth later, but before that there is some basic knowledge you should have before reading any of this
-So the map is devided into chunks and those chunks give point values which later get added up into a final point level, which is the weight of the map. each chunk is 2 beats long, the program runs twice, 1 time starting from beat 0 and 1 time starting from beat 1 to avoid severe angle changes between the first chunks not being counted for in the final cp value.
+I'll explain all of them in depth later, but before that there is some basic knowledge you should have before reading any of this
+So the map is divided into chunks and those chunks give point values which later get added up into a final point level, which is the weight of the map. each chunk is 2 beats long, the program runs twice, 1 time starting from beat 0 and 1 time starting from beat 1 to avoid severe angle changes between the first chunks not being counted for in the final Challenge Points value.
 
 ## Notes on the natural side
 
 If you watched or played any beat saber you know that blue is on the right and red is on the left, but some maps like to switch this a round sometimes, which should lead to an increase of score.
 
-#### Points = The amount of notes that arent on the natural side
+#### Points = The amount of notes that aren't on the natural side
 
 ## Avg angle change
 
@@ -28,13 +28,13 @@ This one is a bit more difficult, so bare with me here, so basically what it doe
 
 ## Avg swing distance
 
-This one is also a selfexplenatory one, it takes the avg distance between the notes.
+This one is also a self explanatory one, it takes the average distance between the notes.
 
 #### Points = The distance between the notes
 
 ## Avg swing speed
 
-The avarage speed someone has to swing at per chunk
+The average speed someone has to swing at per chunk
 
 #### Points = The Distance between 2 notes\*10
 
