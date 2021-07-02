@@ -1,5 +1,8 @@
-import json, math, sympy
-from math import acos, pi
+from json import dump
+from math import hypot
+
+from sympy import Line
+
 
 def modToRaw(score, mods):
     ##########################################
@@ -49,7 +52,7 @@ def getScore(userID, acc, weight):
     return cp
 
 def getLenght(x1, x2, y1, y2):
-    c = math.hypot(x2 - x1, y2 - y1)
+    c = hypot(x2 - x1, y2 - y1)
     return c
 
 def getNotes(file):
@@ -62,10 +65,10 @@ def createChunks(notes):
     ###############
     # Beat 0 dict #
     ###############
-    a = 0   #While loop counter
-    d = 0   #Begin of chunk
-    b = 2   #End of chunk
-    e = 0   #Chunk Naming
+    a = 0   # While loop counter
+    d = 0   # Begin of chunk
+    b = 2   # End of chunk
+    e = 0   # Chunk Naming
     chunk = []
     chunkdict = {}
     while a < len(notesarray):
@@ -81,14 +84,14 @@ def createChunks(notes):
                 chunk.append(f'{notesarray[a]},{notesarray[a+1]},{notesarray[a+2]},{notesarray[a+3]},{notesarray[a+4]}')
         a = a + 1
     with open("dict0.json", "w") as outfile:  
-        json.dump(chunkdict, outfile)
+        dump(chunkdict, outfile)
     ###############
     # Beat 1 dict #
     ###############
-    a = 0   #While loop counter
-    d = 1   #Begin of chunk
-    b = 3   #End of chunk
-    e = 0   #Chunk Naming
+    a = 0   # While loop counter
+    d = 1   # Begin of chunk
+    b = 3   # End of chunk
+    e = 0   # Chunk Naming
     chunk = []
     chunkdict = {}
     while a < len(notesarray):
@@ -104,7 +107,7 @@ def createChunks(notes):
                 chunk.append(f'{notesarray[a]},{notesarray[a+1]},{notesarray[a+2]},{notesarray[a+3]},{notesarray[a+4]}')
         a = a + 1
     with open("dict1.json", "w") as outfile:  
-        json.dump(chunkdict, outfile)
+        dump(chunkdict, outfile)
 
 def notesToAngle(CutDir1, x1, y1, CutDir2, x2, y2):
     x3 = 0
@@ -166,8 +169,8 @@ def notesToAngle(CutDir1, x1, y1, CutDir2, x2, y2):
         x4 = x2 + 1
         y4 = y2 + 1
     try:
-        a = sympy.Line((x1, y1), (x3, y3))
-        b = sympy.Line((x2, y2), (x4, y4))
+        a = Line((x1, y1), (x3, y3))
+        b = Line((x2, y2), (x4, y4))
         angle = a.smallest_angle_between(b)
     except ValueError:
         angle = 0

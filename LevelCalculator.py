@@ -1,17 +1,20 @@
-import json
+from json import load
+from math import pi
+
 from functionlib import *
-from math import pi, acos, sqrt
+
+
 bpm = int(input('What is the BPM of the map? [Int]: '))
 input('Please make sure the file you want to evaluate is in the same folder as this file and is called "song.dat"\n press enter to continue')
 
-#Split song into chunks
+# Split song into chunks
 createChunks(getNotes('song.dat'))
-#Read json outputs of the chunk split into variables
+# Read json outputs of the chunk split into variables
 with open('dict0.json') as json_file:
-    dict0 = json.load(json_file)
+    dict0 = load(json_file)
 with open('dict1.json') as json_file:
-    dict1 = json.load(json_file)
-#While loops to cycle through the dicts and collect all data needed
+    dict1 = load(json_file)
+# While loops to cycle through the dicts and collect all data needed
 counter = 0
 NS = 0
 while counter < len(dict0):
@@ -96,7 +99,7 @@ while counter < len(dict1):
                 d = 0
                 break
     counter = counter + 1
-#Create dict with triangles
+# Create dict with triangles
 counter = 0
 b = 0
 triangles1 = []
@@ -129,7 +132,7 @@ while counter < len(lines2):
         break
     counter = counter + 1
     b = b + 2
-#From the triangle dicts get the lenght between the 2 points and add the Avg Swing Distance points to the point dict
+# From the triangle dicts get the lenght between the 2 points and add the Avg Swing Distance points to the point dict
 counter = 0
 ASD = 0
 while counter < len(triangles1):
@@ -156,7 +159,7 @@ while counter < len(triangles2):
         break
     counter = counter + 1
 ASD = round(ASD, 2)
-#Get coordiantes of the blocks and put them through the notesToAngle function
+# Get coordiantes of the blocks and put them through the notesToAngle function
 counter = 0
 AAC = 0
 while counter < len(lines1):
@@ -169,13 +172,13 @@ while counter < len(lines1):
         e = str(e[1]).split(':')
         c = str(str(cutdir1[counter]).split(':')[1]).split('}')
         g = str(str(cutdir2[counter]).split(':')[1]).split('}')
-        angle = eval(str(notesToAngle(c[0], int(b[1]), int(d[1]), g[0],int(f[1]), int(e[1]))))*180/math.pi
+        angle = eval(str(notesToAngle(c[0], int(b[1]), int(d[1]), g[0],int(f[1]), int(e[1]))))*180/pi
         AAC = AAC + angle
     except IndexError:
         None
     counter = counter + 1
 AAC = round(AAC/(ASD*0.2), 2)
-#Get distance between notes per type
+# Get distance between notes per type
 counter = 0
 ASS = 0
 while counter < (len(time1)-1):
@@ -195,11 +198,11 @@ while counter < (len(time2)-1):
     counter = counter + 1
 ASS = round(ASS, 2)
 MAXBPM = MAXBPM*bpm
-print('-----------------------')
-print(f'Natural side:       {NS}')
-print(f'Avg Angle Change:   {AAC}')
-print(f'Avg Swing Distance: {ASD}')
-print(f'Avg Swing Speed:    {ASS}')
-print(f'Max BPM:            {MAXBPM}')
-print(f'Total RAW:          {ASS+ASD+NS+AAC+MAXBPM}')
-print(f'Reccomended CP:     {round((((ASS+ASD+NS+AAC+MAXBPM)/5)/5), 2)}')
+print(f"""-----------------------
+Natural side:       {NS}
+Avg Angle Change:   {AAC}
+Avg Swing Distance: {ASD}
+Avg Swing Speed:    {ASS}
+Max BPM:            {MAXBPM}
+Total RAW:          {ASS+ASD+NS+AAC+MAXBPM}
+Reccomended CP:     {round((((ASS+ASD+NS+AAC+MAXBPM)/5)/5), 2)}""")
